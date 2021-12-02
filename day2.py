@@ -28,14 +28,14 @@ def calculate_positions(values):
     depth_position = 0
 
     for value in values:
-        instruction = get_instruction(value)
+        [direction, amount] = get_instruction(value)
 
-        if instruction[0] == Directions.FORWARD.value:
-            horizontal_position += int(instruction[1])
-        elif instruction[0] == Directions.UP.value:
-            depth_position -= int(instruction[1])
-        elif instruction[0] == Directions.DOWN.value:
-            depth_position += int(instruction[1])
+        if direction == Directions.FORWARD.value:
+            horizontal_position += int(amount)
+        elif direction == Directions.UP.value:
+            depth_position -= int(amount)
+        elif direction == Directions.DOWN.value:
+            depth_position += int(amount)
 
     return [horizontal_position, depth_position]
 
@@ -47,15 +47,15 @@ def calculate_final_positions(values):
     aim = 0
 
     for value in values:
-        instruction = get_instruction(value)
+        [direction, amount] = get_instruction(value)
 
-        if instruction[0] == Directions.FORWARD.value:
-            horizontal_position += int(instruction[1])
-            depth_position += aim * int(instruction[1])
-        elif instruction[0] == Directions.UP.value:
-            aim -= int(instruction[1])
-        elif instruction[0] == Directions.DOWN.value:
-            aim += int(instruction[1])
+        if direction == Directions.FORWARD.value:
+            horizontal_position += int(amount)
+            depth_position += aim * int(amount)
+        elif direction == Directions.UP.value:
+            aim -= int(amount)
+        elif direction == Directions.DOWN.value:
+            aim += int(amount)
 
     return [horizontal_position, depth_position, aim]
 
